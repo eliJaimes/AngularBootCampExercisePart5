@@ -15,7 +15,8 @@ import {
 	signal,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Observable, interval } from 'rxjs';
 
 @Component({
 	imports: [],
@@ -64,6 +65,16 @@ export class AppComponent implements OnInit {
 	// This is how you define an observable from a signal
 	public readonly numberComputed$: Observable<unknown> = toObservable<unknown>(
 		this.numberComputed,
+	);
+
+	// This is how you define a signal from an observable
+
+	public readonly fromObservableSignal: Signal<number | undefined> = toSignal<
+		number | undefined
+	>(
+		// Creates an Observable that emits sequential numbers every specified interval
+		// of time, on a specified SchedulerLike
+		interval(1000),
 	);
 
 	public ngOnInit(): void {

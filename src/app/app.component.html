@@ -14,5 +14,8 @@
 		type="text"
 		(input)="stringModelSignal.set(inputRef.value)"
 	/>
+	<br /><br />
 	<div>stringModelSignal: {{ stringModelSignal() }}</div>
+	<!-- Here we render a signal coming from an observable -->
+	<div>fromObservableSignal: {{ fromObservableSignal() }}</div>
 </div>
