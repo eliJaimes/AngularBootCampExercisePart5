@@ -3,11 +3,13 @@
 import {
 	Component,
 	EffectRef,
+	InputSignal,
 	OnInit,
 	Signal,
 	WritableSignal,
 	computed,
 	effect,
+	input,
 	signal,
 } from '@angular/core';
 
@@ -38,6 +40,15 @@ export class AppComponent implements OnInit {
 	public readonly someEffectRef: EffectRef = effect((): void => {
 		localStorage.setItem('numberSignalValue', String(this.numberSignal()));
 	});
+
+	// This is how you define a input signal
+	public readonly stringInputSignal: InputSignal<string> = input<string>('');
+
+	// This is equivalent or syntactic sugar to
+	// @Input() public set stringInput(value: string) {
+	// 	this._stringInput.set(value)
+	// }
+	// private readonly _stringInput: WritableSignal<string> = signal<string>('');
 
 	public ngOnInit(): void {
 		setTimeout((): void => {
