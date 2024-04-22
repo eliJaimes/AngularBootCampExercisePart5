@@ -1,3 +1,7 @@
 <!-- ••[1]••••••••••••••••••••••••• app.component.html •••••••••••••••••••••••••••••• -->
 
-<div>app-root works</div>
+<div>
+	<!-- You render a signal by reading it's value with '()' at the end -->
+	<div>numberSignal: {{ numberSignal() }}</div>
+	<div>stringArraySignal: {{ stringArraySignal() }}</div>
+</div>
