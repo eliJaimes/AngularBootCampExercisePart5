@@ -14,6 +14,8 @@ import {
 	model,
 	signal,
 } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
 
 @Component({
 	imports: [],
@@ -59,6 +61,11 @@ export class AppComponent implements OnInit {
 	// @Input() public stringModelSignal: string = '';
 	// @Output() public stringModelSignalChange: EventEmitter<string> = new EventEmitter<string>();
 
+	// This is how you define an observable from a signal
+	public readonly numberComputed$: Observable<unknown> = toObservable<unknown>(
+		this.numberComputed,
+	);
+
 	public ngOnInit(): void {
 		setTimeout((): void => {
 			console.log('%c\nSet timeout complete', 'color: SpringGreen');
@@ -79,5 +86,13 @@ export class AppComponent implements OnInit {
 				return numberSignalValue + 13;
 			});
 		}, 5000);
+
+		this.numberComputed$.subscribe({
+			complete: (): void => console.log('✅ - Done'),
+			error: (error: Error): void =>
+				console.error('❌ - Something wrong occurred: %O', error),
+			next: (value: any): void =>
+				console.log('✔️ numberComputed$ - Got value %O', value),
+		});
 	}
 }
