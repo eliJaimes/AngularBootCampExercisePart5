@@ -68,5 +68,16 @@ export class AppComponent implements OnInit {
 			console.log('Run numberSignal value, now will also run someEffectRef');
 			this.numberSignal.set(7);
 		}, 3000);
+
+		setTimeout((): void => {
+			console.log('%c\nSecond set timeout complete', 'color: OrangeRed');
+			console.log('Update numberSignal value, reusing its existing value');
+			console.log(
+				'This once again automatically update numberComputed and re run someEffectRef',
+			);
+			this.numberSignal.update((numberSignalValue: number): number => {
+				return numberSignalValue + 13;
+			});
+		}, 5000);
 	}
 }
