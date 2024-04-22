@@ -7,4 +7,12 @@
 	<br /><br />
 	<!-- You render a computed signal by reading it's value with '()' at the end -->
 	<div>numberComputed: {{ numberComputed() }}</div>
+	<br /><br />
+	<!-- Here we render a model signal -->
+	<input
+		#inputRef
+		type="text"
+		(input)="stringModelSignal.set(inputRef.value)"
+	/>
+	<div>stringModelSignal: {{ stringModelSignal() }}</div>
 </div>

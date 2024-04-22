@@ -4,12 +4,14 @@ import {
 	Component,
 	EffectRef,
 	InputSignal,
+	ModelSignal,
 	OnInit,
 	Signal,
 	WritableSignal,
 	computed,
 	effect,
 	input,
+	model,
 	signal,
 } from '@angular/core';
 
@@ -49,6 +51,13 @@ export class AppComponent implements OnInit {
 	// 	this._stringInput.set(value)
 	// }
 	// private readonly _stringInput: WritableSignal<string> = signal<string>('');
+
+	// This is how you define a model signal
+	public readonly stringModelSignal: ModelSignal<string> = model<string>('');
+	// This is equivalent or syntactic sugar to
+
+	// @Input() public stringModelSignal: string = '';
+	// @Output() public stringModelSignalChange: EventEmitter<string> = new EventEmitter<string>();
 
 	public ngOnInit(): void {
 		setTimeout((): void => {
